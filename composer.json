@@ -1,0 +1,37 @@
+{
+  "name": "sysvyz/collection",
+
+  "type": "library",
+  "description": "php genric lib",
+  "keywords": [
+    "lphp",
+    "math",
+    "lib"
+  ],
+  "homepage": "https://github.com/sysvyz/anaN",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Moritz Bauer",
+      "email": "mb@sysvyz.org",
+      "homepage": "http://sysvyz.org",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "nikic/php-parser": "^2.1",
+    "symfony/filesystem": "^3.1",
+    "sysvyz/hurl": "dev-master",
+    "sysvyz/cofi": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Svz\\Generic\\": "src",
+      "Svz\\GenericTest\\": "tests"
+    }
+  }
+}
