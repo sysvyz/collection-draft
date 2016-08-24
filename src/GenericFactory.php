@@ -19,7 +19,7 @@ class GenericFactory
 	{
 		$parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
 
-		$ast = $parser->parse(file_get_contents(__DIR__ . '/../GenericClass_Collection.php'));
+		$ast = $parser->parse(file_get_contents(__DIR__ . '/templates/GenericClass_Collection.php'));
 
 
 		$fs = new \Symfony\Component\Filesystem\Filesystem();

@@ -1,4 +1,4 @@
-<?php namespace Svz\GenericTest;
+<?php namespace Svz\GenericTest\Imp;
 
 class AbcClass
 {

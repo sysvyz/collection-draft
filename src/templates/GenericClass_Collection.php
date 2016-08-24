@@ -1,7 +1,6 @@
-<?php namespace Svz\Collection;
+<?php namespace _Placeholder;
 
 use GenericClass;
-use Traversable;
 
 class Collection implements \IteratorAggregate, \ArrayAccess, \Countable
 {

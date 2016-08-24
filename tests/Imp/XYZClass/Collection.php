@@ -1,7 +1,6 @@
 <?php namespace Svz\GenericTest\Imp\XYZClass;
 
 use Svz\GenericTest\Imp\XYZClass as GenericClass;
-use Traversable;
 class Collection implements \IteratorAggregate, \ArrayAccess, \Countable
 {
     /**
