@@ -1,6 +1,6 @@
-<?php namespace Svz\GenericTest\Imp;
+<?php namespace Svz\GenericTest\TestObject;
 
-class AbcClass
+class ClassA extends ClassC
 {
 	public $xyz;
 
