@@ -131,8 +131,12 @@ class Collection implements \IteratorAggregate, \ArrayAccess, \Countable
 	 */
 	public function offsetSet($offset, $value)
 	{
+if(is_null($offset)){
 
-		$this->put($offset, $value);
+    $this->add($value);
+}else{
+    $this->put($offset, $value);
+}
 
 	}
 

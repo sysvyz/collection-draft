@@ -11,20 +11,28 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
 {
 
 
-    public static function _tearDownAfterClass()
+    public static function setUpBeforeClass(){
+        $fs = new Filesystem();
+        $fs->remove(__DIR__ . '/TestObject/ClassA/');
+        $fs->remove(__DIR__ . '/TestObject/ClassB/');
+        $fs->remove(__DIR__ . '/TestObject/ClassC/');
+        $fs->remove(__DIR__ . '/TestObject/ClassD/');
+        parent::setUpBeforeClass();
+    }
+    public static function tearDownAfterClass()
     {
 
         $fs = new Filesystem();
-        $fs->remove(__DIR__ . '/TestObject/AbcClass/');
-        $fs->remove(__DIR__ . '/TestObject/XYZClass/');
+        $fs->remove(__DIR__ . '/TestObject/ClassA/');
+        $fs->remove(__DIR__ . '/TestObject/ClassB/');
+        $fs->remove(__DIR__ . '/TestObject/ClassC/');
+        $fs->remove(__DIR__ . '/TestObject/ClassD/');
         parent::tearDownAfterClass();
     }
 
     public function testFactory()
     {
 
-        $fs = new Filesystem();
-        $fs->remove(__DIR__ . '/TestObject/AbcClass/');
         $f = new GenericFactory();
         $f->create(ClassA::class);
 
@@ -34,16 +42,13 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
         $a->addAll([new TestObject\ClassA(2), new TestObject\ClassA(2), new TestObject\ClassA(2)]);
 
 
-        $a->get(0)->xyz;
 
+        $this->assertEquals(2,   $a->get(0)->xyz);
     }
 
     public function testAutoload()
     {
-        $fs = new Filesystem();
-        $fs->remove(__DIR__ . '/TestObject/XYZClass/');
 
-        $fs = new Filesystem();
         $a = new Anothername\Collection();
 
         $a[] = new Anothername(3);
@@ -56,8 +61,6 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
     public function testFactoryAndAutoload()
     {
 
-        $fs = new Filesystem();
-        $fs->remove(__DIR__ . '/TestObject/AbcClass/');
         $f = new GenericFactory();
         $f->create(ClassC::class);
 
@@ -79,9 +82,6 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
     public function testAutoloadAndAutoload()
     {
 
-        $fs = new Filesystem();
-        $fs->remove(__DIR__ . '/TestObject/AbcClass/');
-
         $a = new ClassD\Collection\Collection();
 
 
@@ -91,11 +91,53 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
         $row2->addAll([new TestObject\ClassD(2), new TestObject\ClassD(2), new TestObject\ClassD(2)]);
         $a->addAll([$row1, $row2]);
 
-        $row2 = new ClassC\Collection();
-
         $this->assertEquals(3, $a->get(0)->get(1)->publicField);
 
 
     }
 
+    public function testMultiDim()
+    {
+        $a = new ClassD\Collection\Collection();
+
+
+        $row1 = new ClassD\Collection();
+        $row1->addAll([new TestObject\ClassD(2), new TestObject\ClassD(3), new TestObject\ClassD(2)]);
+        $row2 = new ClassD\Collection();
+        $row2->addAll([new TestObject\ClassD(2), new TestObject\ClassD(2), new TestObject\ClassD(2)]);
+        $a->addAll([$row1, $row2]);
+
+
+        $this->assertEquals(3, $a[0][1]->publicField);
+        $this->assertEquals(2, $a[0][2]->publicField);
+        $this->assertEquals(2, $a[1][1]->publicField);
+
+
+    }
+
+    public function testMultiDim2()
+    {
+
+
+        $a = new ClassD\Collection\Collection();
+
+
+        $a[] = new TestObject\ClassD\Collection();
+        $a[] = new ClassD\Collection();
+
+        $a[0][] = new ClassD(2);
+        $a[0][4] = new ClassD(1);
+        $a[1][0] = new ClassD(3);
+        $a[0][5] = new ClassD(2);
+        $a[1][1] = new ClassD(6);
+        $a[0][2] = new ClassD(8);
+        $a[0][] = new ClassD(2);
+
+
+        $this->assertEquals(2, $a[0][0]->publicField);
+        $this->assertEquals(1, $a[0][4]->publicField);
+        $this->assertEquals(6, $a[1][1]->publicField);
+
+
+    }
 }

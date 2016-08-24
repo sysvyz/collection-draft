@@ -61,7 +61,7 @@ class GenericPrinterTest extends \PHPUnit_Framework_TestCase
 	{
 
 		$fs = new Filesystem();
-		$fs->remove(__DIR__.'/tmp');
+		$fs->remove(__DIR__.'/tmp/');
 		parent::tearDown();
 	}
 }
