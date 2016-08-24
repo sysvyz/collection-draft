@@ -26,7 +26,7 @@ class SomeClass
 	/**
 	 * @return SomeClass
 	 */
-	public function getParent(): SomeClass
+	public function getParent()
 	{
 		return $this->parent;
 	}

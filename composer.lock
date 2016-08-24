@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "180441b630505eef21e163847f340d4e",
-    "content-hash": "ffff71228892058535219933afb36cd9",
+    "hash": "7ad56bc594664fc5577a934167221042",
+    "content-hash": "65c8bfeee0b99729e2b58a9d049fc1d1",
     "packages": [
         {
             "name": "nikic/php-parser",
@@ -151,53 +151,6 @@
                 "filter"
             ],
             "time": "2016-07-28 15:09:24"
-        },
-        {
-            "name": "sysvyz/hurl",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sysvyz/hurl.git",
-                "reference": "ff5e20942e21db931a98ad3cd2607147291b4714"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sysvyz/hurl/zipball/ff5e20942e21db931a98ad3cd2607147291b4714",
-                "reference": "ff5e20942e21db931a98ad3cd2607147291b4714",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "5.3.*",
-                "symfony/filesystem": "^3.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Hurl\\": "src",
-                    "HurlTest\\": "test"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Moritz Bauer",
-                    "email": "mb@sysvyz.org",
-                    "homepage": "http://sysvyz.org",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP7 language wrapper",
-            "homepage": "https://github.com/sysvyz/hurl",
-            "keywords": [
-                "language wrapper"
-            ],
-            "time": "2016-07-18 08:13:35"
         }
     ],
     "packages-dev": [
@@ -1309,13 +1262,12 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "sysvyz/hurl": 20,
         "sysvyz/cofi": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+        "php": ">=5.5.9"
     },
     "platform-dev": []
 }

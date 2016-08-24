@@ -41,7 +41,7 @@ class Collection implements \IteratorAggregate, \ArrayAccess, \Countable
      * @param $index
      * @return GenericClass
      */
-    public function get($index) : GenericClass
+    public function get($index)
     {
         if (isset($this->list[$index])) {
             return $this->list[$index];

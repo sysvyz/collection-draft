@@ -38,7 +38,7 @@ class GenericPrinter extends StandardPrinter
 	/**
 	 * @return string
 	 */
-	public function getClassName(): string
+	public function getClassName()
 	{
 		return $this->className;
 	}
@@ -46,7 +46,7 @@ class GenericPrinter extends StandardPrinter
 	/**
 	 * @return string
 	 */
-	public function getFullQualifiedName(): string
+	public function getFullQualifiedName()
 	{
 		return $this->fullQualifiedName;
 	}

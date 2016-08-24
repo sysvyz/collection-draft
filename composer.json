@@ -19,10 +19,9 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0",
+    "php": ">=5.5.9",
     "nikic/php-parser": "^2.1",
     "symfony/filesystem": "^3.1",
-    "sysvyz/hurl": "dev-master",
     "sysvyz/cofi": "dev-master"
   },
   "require-dev": {
