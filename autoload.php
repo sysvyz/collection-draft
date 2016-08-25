@@ -1,30 +1,43 @@
-<?php
-if(!defined('SVZ_GENERIC_AUTOLOAD_VENDOR')){
-    define('SVZ_GENERIC_AUTOLOAD_VENDOR' , true);
+<?php namespace Svz\Generic;
+if (!defined('Svz\Generic\AUTOLOAD_VENDOR')) {
+	define('Svz\Generic\AUTOLOAD_VENDOR', true);
 }
-if(!defined('SVZ_GENERIC_AUTOLOAD_PREPEND')){
-    define('SVZ_GENERIC_AUTOLOAD_PREPEND' , false);
+if (!defined('Svz\Generic\AUTOLOAD_PREPEND')) {
+	define('Svz\Generic\AUTOLOAD_PREPEND', false);
 }
-
+if (!defined('Svz\Generic\PERSIST_FILES')) {
+	define('Svz\Generic\PERSIST_FILES', true);
+}
 /**
  * @param $class
  */
-function _generic_autoload($class)
-{
+function create($base,$template){
 	$factory = new \Svz\Generic\GenericFactory();
+	$path = $factory->create($base,$template);
+	/** @noinspection PhpIncludeInspection */
+	include_once $path;
+
+	if (!PERSIST_FILES) {
+		static $fs = null;
+		if (!$fs) {
+			$fs = new \Symfony\Component\Filesystem\Filesystem();
+		}
+		$fs->remove($path);
+	}
+}
+
+function autoload($class)
+{
+
+
 	$parts = explode("\\", $class);
 	$last = array_pop($parts);
 	$base = implode('\\', $parts);
 	if ($last === 'Collection' && class_exists($base)) {
-
-		$path = $factory->create($base);
-        /** @noinspection PhpIncludeInspection */
-        include_once $path;
-
+		create($base,'Collection');
 	}
 }
-
-if(SVZ_GENERIC_AUTOLOAD_VENDOR){
-    include_once __DIR__ . '/vendor/autoload.php';
+if (AUTOLOAD_VENDOR) {
+	include_once __DIR__ . '/vendor/autoload.php';
 }
-spl_autoload_register('_generic_autoload', true, SVZ_GENERIC_AUTOLOAD_PREPEND);
+spl_autoload_register('\Svz\Generic\autoload', true, AUTOLOAD_PREPEND);

@@ -15,11 +15,11 @@ class GenericFactory
 		$this->path = $path;
 	}
 
-	public function create($fullQualifiedName)
+	public function create($fullQualifiedName,$template)
 	{
 		$parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
 
-		$ast = $parser->parse(file_get_contents(__DIR__ . '/templates/GenericClass_Collection.php'));
+		$ast = $parser->parse(file_get_contents(__DIR__ . '/templates/'.$template.'.php'));
 
 
 		$fs = new \Symfony\Component\Filesystem\Filesystem();
@@ -36,15 +36,6 @@ class GenericFactory
 			$fs->dumpFile($filename, '<?php ' . $str);
 		}
 		return $filename;
-	}
-
-	public function load($path = null)
-	{
-
-	}
-	public function loadAndDismiss($path = null)
-	{
-
 	}
 
 }

@@ -22,7 +22,7 @@ class GenericPrinterTest extends \PHPUnit_Framework_TestCase
 
 		$parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
 
-		$ast = $parser->parse(file_get_contents(__DIR__ . '/../src/templates/GenericClass_Collection.php'));
+		$ast = $parser->parse(file_get_contents(__DIR__ . '/../src/templates/Collection.php'));
 
 
 		$p = new GenericPrinter(SomeInterface::class);

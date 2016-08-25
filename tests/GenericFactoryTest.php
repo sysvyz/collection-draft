@@ -34,7 +34,7 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
     {
 
         $f = new GenericFactory();
-        $f->create(ClassA::class);
+        $f->create(ClassA::class,'Collection');
 
         $a = new ClassA\Collection();
 
@@ -62,7 +62,7 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
     {
 
         $f = new GenericFactory();
-        $f->create(ClassC::class);
+        $f->create(ClassC::class,'Collection');
 
         $a = new ClassC\Collection\Collection();
 
