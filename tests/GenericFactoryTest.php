@@ -34,7 +34,7 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
     {
 
         $f = new GenericFactory();
-        $f->create(ClassA::class,'Collection');
+        $f->create(ClassA::class,GenericFactory::COLLECTION);
 
         $a = new ClassA\Collection();
 
@@ -62,7 +62,7 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
     {
 
         $f = new GenericFactory();
-        $f->create(ClassC::class,'Collection');
+        $f->create(ClassC::class,GenericFactory::COLLECTION);
 
         $a = new ClassC\Collection\Collection();
 
@@ -115,29 +115,67 @@ class GenericFactoryTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function testMultiDim2()
-    {
+	public function testMultiDim2()
+	{
 
 
-        $a = new ClassD\Collection\Collection();
+		$a = new ClassD\Collection\Collection();
 
 
-        $a[] = new TestObject\ClassD\Collection();
-        $a[] = new ClassD\Collection();
+		$a[] = new TestObject\ClassD\Collection();
+		$a[] = new ClassD\Collection();
 
-        $a[0][] = new ClassD(2);
-        $a[0][4] = new ClassD(1);
-        $a[1][0] = new ClassD(3);
-        $a[0][5] = new ClassD(2);
-        $a[1][1] = new ClassD(6);
-        $a[0][2] = new ClassD(8);
-        $a[0][] = new ClassD(2);
-
-
-        $this->assertEquals(2, $a[0][0]->publicField);
-        $this->assertEquals(1, $a[0][4]->publicField);
-        $this->assertEquals(6, $a[1][1]->publicField);
+		$a[0][] = new ClassD(2);
+		$a[0][4] = new ClassD(1);
+		$a[1][0] = new ClassD(3);
+		$a[0][5] = new ClassD(2);
+		$a[1][1] = new ClassD(6);
+		$a[0][2] = new ClassD(8);
+		$a[0][] = new ClassD(9);
+		$a[] = [new ClassD(1),new ClassD(2),new ClassD(3)];
 
 
-    }
+		$this->assertEquals(2, $a[0][0]->publicField);
+		$this->assertEquals(1, $a[0][4]->publicField);
+		$this->assertEquals(6, $a[1][1]->publicField);
+		$this->assertEquals(9, $a[0][6]->publicField);
+
+
+	}
+	public function testMultiDim3()
+	{
+
+
+		$a = new ClassD\Collection\Collection();
+
+
+		$a->addAll([[],[],[],[],[],[],[],[]]);
+
+		print_r($a);
+
+		$a[0][] = new ClassD(2);
+		$a[0][4] = new ClassD(1);
+		$a[1][0] = new ClassD(3);
+		$a[0][5] = new ClassD(2);
+		$a[1][1] = new ClassD(6);
+		$a[0][2] = new ClassD(8);
+		$a[0][] = new ClassD(9);
+		$a[] = [new ClassD(1),new ClassD(2),new ClassD(3)];
+
+
+		$this->assertEquals(2, $a[0][0]->publicField);
+		$this->assertEquals(1, $a[0][4]->publicField);
+		$this->assertEquals(6, $a[1][1]->publicField);
+		$this->assertEquals(9, $a[0][6]->publicField);
+
+		$a[0][6]->publicField = 22;
+
+		$this->assertEquals(22, $a[0][6]->publicField);
+
+
+
+	}
+
+
+
 }

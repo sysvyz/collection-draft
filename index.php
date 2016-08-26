@@ -9,4 +9,4 @@ if (!defined('PERSIST_FILES')) {
 
 include __DIR__."/autoload.php";
 
-$c = new ClassA\Collection(2);
+$c = new ClassA\Collection();
