@@ -27,7 +27,6 @@ function create($base, $template)
 function autoload($class)
 {
 
-
 	$parts = explode("\\", $class);
 	$last = array_pop($parts);
 	$base = implode('\\', $parts);
@@ -37,11 +36,20 @@ function autoload($class)
 			case 'Collection':
 				create($base, GenericFactory::COLLECTION);
 				break;
+			case 'TreeSet':
+				create($base, GenericFactory::TREE_SET);
+				break;
 			case 'Iterator':
 				create($base, GenericFactory::ITERATOR);
 				break;
 			case 'AbstractCollection':
 				create($base, GenericFactory::ABSTRACT_COLLECTION);
+				break;
+			case 'TreeSetIterator':
+				create($base, GenericFactory::TREE_SET_ITERATOR);
+				break;
+			case 'Map':
+				create($base, GenericFactory::MAP);
 				break;
 
 

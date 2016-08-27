@@ -1,6 +1,8 @@
 <?php namespace Svz\GenericTest\TestObject;
 
-class ClassA extends ClassC
+use Svz\Generic\Contracts\Comparable;
+
+class ClassA extends ClassC implements Comparable
 {
 	public $xyz;
 
@@ -13,4 +15,9 @@ class ClassA extends ClassC
 		$this->xyz = $xyz;
 	}
 
+
+	public function compare($other)
+	{
+		return strcmp($this->xyz,$other->xyz);
+	}
 }
